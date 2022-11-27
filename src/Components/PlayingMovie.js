@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-export default class PlayingMovie extends Component {
-  render() {
+const PlayingMovie = () => {
     let movies = this.props.movies
     return (
       <div className='h-full w-full' id="playing">
@@ -27,4 +26,5 @@ export default class PlayingMovie extends Component {
       </div>
     )
   }
-}
+
+export default PlayingMovie

@@ -1,60 +1,98 @@
-import React, { Component } from 'react'
-import Navbar from '../Components/Navbar'
-import api from '../Components/api'
+import { useState, useEffect } from 'react';
+import api from '../Services/api';
+import { useNavigate } from 'react-router-dom';
+import Navbar  from '../Components/Navbar'
 import Carousel from '../Components/Carousel'
 import UpcomingMovies from '../Components/UpcomingMovies'
 
-export default class App extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      playingMovies : [],
-      upcomingMovies : []
-    }
-  }
-  async getPlayingMovies(){
+const Home = () => {
+  const [playingMovies, setPlayingMovies] = useState()
+  const [upcomingMovies, setUpcomingMovies] = useState()
+  const [genreList, setGenreList] = useState()
+  const navigate = useNavigate()
+
+  const getPlayingMovies = async() =>{
     try {
       let result = await api.nowPlaying('now_playing')
-      this.setState({
-        playingMovies : result.data.results
-      })
-      // console.table(result.data.results)
+      setPlayingMovies(result.data.results)
     } catch (error) {
       console.error(error)
     }
   }
-  async getUpcomingMovies(){
+  const getUpcomingMovies = async() =>{
     try {
       let result = await api.upcomingMovies('upcoming')
-      this.setState({
-       upcomingMovies : result.data.results
-      })
-      console.table(result.data.results)
+      setUpcomingMovies(result.data.results)
     } catch (error) {
       console.error(error)
     }
   }
-  componentDidMount(){
-    this.getPlayingMovies()
-    this.getUpcomingMovies()
+  const getALLgenre = async() =>{
+    try {
+      let result = await api.genreList()
+      setGenreList(result.data.genres)
+    } catch (error) {
+      console.error(error)
+    }
   }
-  render() {
-    let { playingMovies,upcomingMovies } = this.state
-    return (
-      <div className='w-full bg-gray-800 selection:bg-purple-400 selection:text-purple-900'>
-        <Navbar/>
-        <Carousel movies={playingMovies}/>
-        <UpcomingMovies upcoming={upcomingMovies}/>
+  useEffect(() => {
+    getPlayingMovies()
+    getUpcomingMovies()
+    getALLgenre()
+  },[])
+  
+  console.log(playingMovies)
+  console.log(Array.isArray(playingMovies))
+  return (
+      <div className='w-full selection:bg-purple-400 selection:text-purple-900'>
+        <Navbar
+           home={() => navigate("/")}
+           project={() => navigate("/project")}
+           about={() => navigate("/about")}
+           contact={() => navigate("/contact")}
+        />
+        
+    {/* { playingMovies &&
+      playingMovies.map(movie => {
+        return <p>{movie.title}</p>
+      })
+    } */}
+
+        <div className="carousel w-full h-full bg-indigo-500" id='playing'>
+                {playingMovies ?
+                    playingMovies.map((item, index) => {
+                       return(
+                        <Carousel
+                          movie={item} index={index} genrelist={genreList} keys={index}
+                          detailClick={(movie_id) => navigate(('/detail'),{
+                            state : {
+                                id : movie_id
+                              }
+                          } )}
+                          />
+                       )
+                    })
+                  : <p>loading dulu guys</p>
+                  }
+        </div>
+        {
+          upcomingMovies &&
+          <UpcomingMovies upcoming={upcomingMovies}
+            detailClick={(movie_id) => navigate(('/detail'),{
+              state : {
+                  id : movie_id
+                }
+            } )}
+          />
+        }
 
         {/* <PlayingMovie movies={this.state.movies}/>
         <FavoriteMovies movies={this.state.favorite}/> */}
     </div>
     )
-  }
 }
 
-
-
+export default Home
 
 
 // import React, { Component } from 'react';

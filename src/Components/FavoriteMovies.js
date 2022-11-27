@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-export default class FavoriteMovies extends Component {
-  render() {
+const FavoriteMovies = () => {
     let movies = this.props.movies
     return (
         <div className='flex flex-col h-full w-full' id="favorite">
@@ -27,4 +26,6 @@ export default class FavoriteMovies extends Component {
       </div>
     )
   }
-}
+
+
+export default FavoriteMovies
