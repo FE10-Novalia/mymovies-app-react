@@ -4,10 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import Navbar  from '../Components/Navbar'
 import Carousel from '../Components/Carousel'
 import UpcomingMovies from '../Components/UpcomingMovies'
+import Loading from '../Components/Loading';
+import TrendingMovies from '../Components/TrendingMovies';
+import Footer from '../Components/Footer';
 
 const Home = () => {
   const [playingMovies, setPlayingMovies] = useState()
   const [upcomingMovies, setUpcomingMovies] = useState()
+  const [trendingMovies, setTrendingMovies] = useState()
   const [genreList, setGenreList] = useState()
   const navigate = useNavigate()
 
@@ -35,30 +39,30 @@ const Home = () => {
       console.error(error)
     }
   }
+  const getTrendingMovies = async() => {
+    try {
+      let result = await api.getTrending()
+      setTrendingMovies(result.data.results)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   useEffect(() => {
     getPlayingMovies()
     getUpcomingMovies()
     getALLgenre()
+    getTrendingMovies()
   },[])
   
-  console.log(playingMovies)
-  console.log(Array.isArray(playingMovies))
   return (
-      <div className='w-full selection:bg-purple-400 selection:text-purple-900'>
+      <div className='w-full selection:bg-purple-400 selection:text-purple-900 bg-white dark:bg-gray-700'>
         <Navbar
            home={() => navigate("/")}
            project={() => navigate("/project")}
            about={() => navigate("/about")}
            contact={() => navigate("/contact")}
         />
-        
-    {/* { playingMovies &&
-      playingMovies.map(movie => {
-        return <p>{movie.title}</p>
-      })
-    } */}
-
-        <div className="carousel w-full h-full bg-indigo-500" id='playing'>
+        <div className="carousel w-full h-full bg-indigo-500 dark:bg-gray-700" id='playing'>
                 {playingMovies ?
                     playingMovies.map((item, index) => {
                        return(
@@ -72,9 +76,19 @@ const Home = () => {
                           />
                        )
                     })
-                  : <p>loading dulu guys</p>
+                  : <Loading/>
                   }
         </div>
+        {
+          trendingMovies &&
+          <TrendingMovies trending={trendingMovies}
+            detailClick={(movie_id) => navigate(('/detail'),{
+              state : {
+                  id : movie_id
+                }
+            } )}
+          />
+        }
         {
           upcomingMovies &&
           <UpcomingMovies upcoming={upcomingMovies}
@@ -86,8 +100,7 @@ const Home = () => {
           />
         }
 
-        {/* <PlayingMovie movies={this.state.movies}/>
-        <FavoriteMovies movies={this.state.favorite}/> */}
+        <Footer/>
     </div>
     )
 }

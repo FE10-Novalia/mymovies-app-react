@@ -35,5 +35,10 @@ export default{
     instance({
         method : 'GET',
         url : `movie/${id}/reviews?api_key=1f9c774f5dc32a434e4a1f092839fff0&language=en-US&page=1`
+    }),
+    getTrending:() =>
+    instance({
+        method: 'GET',
+        url :`trending/all/day?api_key=1f9c774f5dc32a434e4a1f092839fff0`
     })
 }

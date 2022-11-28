@@ -2,7 +2,7 @@ import React from 'react'
 
 const DetailInfo = ({movie}) => {
   return (
-    <div className='text-gray-800 h-auto w-full bg-indigo-400'>    
+    <div className='text-gray-800 h-auto w-full bg-indigo-400 dark:bg-gray-800 dark:text-gray-200'>    
         <div className={`hero h-full  glass p-10 w-full`}>
             <table className="w-full my-10">
                 <tbody className='overflow-x-auto'>
@@ -19,7 +19,7 @@ const DetailInfo = ({movie}) => {
                 <tr>
                     <td>Homepage</td>
                     <td>:</td>
-                    <td><a href={movie.homepage} target='_blank' className="link link-primary">Official Page</a></td>
+                    <td><a href={movie.homepage} target='_blank' className="link link-primary dark:link-info">Official Page</a></td>
                 </tr>
                 <tr>
                     <td>Revenue</td>
