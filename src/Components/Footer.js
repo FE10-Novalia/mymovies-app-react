@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="footer items-center p-5 bg-indigo-500 text-gray-200 dark:bg-gray-600 dark:text-gray-200 relative bottom-0 w-full h-42">
+    <footer className="footer items-center p-5 bg-indigo-500 text-gray-200 dark:bg-gray-600 dark:text-gray-200 w-full h-42">
         <div className="items-center grid-flow-col">
         <a className="btn btn-ghost normal-case text-xl" style={{textShadow:'2px 2px 3px black'}}>Movie <span className='text-indigo-400 font-bold'>App</span></a>
             <p>Copyright © 2022 - All right reserved</p>

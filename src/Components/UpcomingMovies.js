@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
 
 const UpcomingMovies = ({ upcoming, detailClick }) => {
-    console.log(upcoming)
         return (
             <div className='flex flex-col h-full w-full bg-gray-300 dark:bg-gray-700 px-10 mb-5' id="favorite">
             <h1 className='text-center p-5 text-indigo-400 font-bold text-3xl italic' style={{textShadow:'2px 2px 3px black'}}>Upcoming Movies</h1>

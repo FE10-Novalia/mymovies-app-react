@@ -5,7 +5,7 @@ const Carousel = ({ movie,index,genrelist,detailClick, keys }) => {
             <div id={index} key={keys} className="carousel-item glass relative w-full h-full">
                 <div className="hero h-full text-white">
                     <div className="hero-content flex-col lg:flex-row">
-                        <img src={url} className="max-w-sm rounded-lg shadow-2xl" />
+                        <img src={url} className="max-w-sm rounded-lg shadow-2xl" alt="gambar"/>
                         <div className='px-10'>
                         <h1 className="text-5xl font-bold text-indigo-300" style={{textShadow:'2px 2px 3px black'}}>Now Playing!</h1>
                         <h1 className="text-5xl font-bold" style={{textShadow:'2px 2px 3px black'}}>{movie.title}</h1>

@@ -1,6 +1,6 @@
 import api from '../Services/api';
 import Navbar from '../Components/Navbar';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DetailCard from '../Components/DetailCard';
 import UpcomingMovies from '../Components/UpcomingMovies';
@@ -11,7 +11,6 @@ import Footer from '../Components/Footer';
 
 const Detail = () => {
     const [movieDetail,setMovieDetail] = useState()
-    const [reviews,setReviews] = useState()
     const [trendingMovies, setTrendingMovies] = useState()
     const [upcomingMovies,setUpcomingMovies] = useState()
     const [videoUrl,setVideoUrl] = useState()
@@ -38,15 +37,6 @@ const Detail = () => {
         .catch(err => console.log(err))
         setVideoUrl(`https://www.youtube.com/embed/${url}`)
     }
-
-    const getReviews = async(id) => {
-      try {
-        let result = await api.getReview(id)
-        setReviews(result.data.results)
-      } catch (error) {
-        console.error(error)
-      }
-    }
     const getUpcomingMovies = async() =>{
       try {
         let result = await api.upcomingMovies('upcoming')
@@ -71,7 +61,6 @@ const Detail = () => {
     }
     useEffect(()=>{
         getVideo(location?.state?.id)
-        getReviews(location?.state?.id)
         getUpcomingMovies()
         getTrendingMovies()
     },[])
@@ -94,7 +83,7 @@ const Detail = () => {
                   <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2"
                     onClick={() => hiddenTrailer()}>✕</label>
                   <iframe src={videoUrl} className={`w-[60vw] h-[70vh] border border-3xl border-indigo-800 shadow-xl`}
-                    scrolling="no" autoPlay
+                    scrolling="no" autoPlay title="trailer"
                     allow="autoplay; fullscreen;encrypted-media;"
                   ></iframe>
                 </div>
@@ -132,7 +121,6 @@ const Detail = () => {
           }}
           />
         }
-
         <Footer/>
       </div>
     )

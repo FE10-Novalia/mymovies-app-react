@@ -6,10 +6,10 @@ const DetailCard = ({movie, handleClick}) => {
     let runtime = `${runtimeHour}h ${runtimeMinutes}m`
 
     return (
-      <div className='text-gray-800 h-auto w-full dark:text-gray-200'>
-        <div className={`hero h-full  glass p-10 w-full`}>
+      <div className='text-gray-800 h-auto max-w-full dark:text-gray-200'>
+        <div className={`hero h-full  glass p-1 md:p-10 max-w-full`}>
             <div className="hero-content flex-col lg:flex-row relative">
-                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="max-w-sm rounded-lg shadow-2xl" />
+                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="sm:max-w-sm rounded-lg shadow-2xl" />
                 <div className='mx-10 w-[60vw] h-full flex flex-col justify-evenly'>
                 <h1 className="text-4xl font-bold" style={{textShadow:'2px 2px 3px black'}}>{movie.title}</h1>
                 <p className="py-6 italic font-bold">{movie.tagline}</p>
@@ -27,7 +27,7 @@ const DetailCard = ({movie, handleClick}) => {
                 
                 {/* <p>{movie.backdrop_path}</p> */}
                 <h2 className='text-gray-800 font-bold my-5 text-primary dark:text-gray-200 text-xl'>Companies : </h2>
-                <ul className='flex justify-evenly my-8'>
+                <ul className='flex justify-evenly flex-wrap my-8'>
                     { movie.production_companies &&
                         movie.production_companies.map((companie) => {
                         return (
@@ -47,7 +47,7 @@ const DetailCard = ({movie, handleClick}) => {
                         
                     }
                 </ul>
-                <div className='flex justify-evenly'>
+                <div className='flex justify-evenly flex-wrap'>
                         <Favorite/>
                         <button className="btn btn-outline btn-primary dark:btn-outline dark:btn-info" htmlFor="my-modal-3" onClick={handleClick}>See Trailer</button>
                     </div>

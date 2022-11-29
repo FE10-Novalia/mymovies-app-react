@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
 
 const TrendingMovies = ({ trending, detailClick }) => {
-    console.log(trending)
         return (
             <div className='flex flex-col h-full w-full bg-gray-300 dark:bg-gray-700 px-10' id="favorite">
             <h1 className='text-center p-5 text-indigo-400 font-bold text-3xl italic' style={{textShadow:'2px 2px 3px black'}}>Trending Movies</h1>
