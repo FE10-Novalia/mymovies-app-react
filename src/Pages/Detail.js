@@ -69,7 +69,7 @@ const Detail = () => {
       <div className='bg-white w-full h-full flex flex-col'>
         <Navbar
            home={() => navigate("/")}
-           project={() => navigate("/project")}
+           favorite={() => navigate("/favorite")}
            about={() => navigate("/about")}
            contact={() => navigate("/contact")}
         />

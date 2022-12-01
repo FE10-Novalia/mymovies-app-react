@@ -1,6 +1,11 @@
+import { useDispatch } from "react-redux"
+import { addFavorite } from "../features/Slice"
+import FavoriteButton from "./FavoriteBtn"
 
 const Carousel = ({ movie,index,genrelist,detailClick, keys }) => {
       let url = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+      const dispatch = useDispatch()
+    //   console.log(movie.id)
         return (
             <div id={index} key={keys} className="carousel-item glass relative w-full h-full">
                 <div className="hero h-full text-white">
@@ -20,7 +25,10 @@ const Carousel = ({ movie,index,genrelist,detailClick, keys }) => {
                         </div>
                         <p className="py-6">{movie.overview}</p>
                         {/* <button className="btn btn-primary mx-5">Watch Now</button> */}
-                        <button className="btn btn-primary dark:btn-info" onClick={() => detailClick(movie.id)}>See Detail</button>
+                        <div className="flex justify-evenly">
+                            <FavoriteButton string={true} movie_id={movie} />
+                            <button className="btn btn-primary dark:btn-info" onClick={() => detailClick(movie.id)}>See Detail</button>
+                        </div>
                         </div>
                     </div>
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

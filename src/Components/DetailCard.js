@@ -1,4 +1,4 @@
-import Favorite from './Favorite'
+import FavoriteButton from './FavoriteBtn'
 
 const DetailCard = ({movie, handleClick}) => {
     let runtimeHour = Math.floor(movie?.runtime / 60),
@@ -48,7 +48,7 @@ const DetailCard = ({movie, handleClick}) => {
                     }
                 </ul>
                 <div className='flex justify-evenly flex-wrap'>
-                        <Favorite/>
+                        <FavoriteButton string={true} movie_id={movie}/>
                         <button className="btn btn-outline btn-primary dark:btn-outline dark:btn-info" htmlFor="my-modal-3" onClick={handleClick}>See Trailer</button>
                     </div>
                 <div className="stats glass shadow flex -justify-center my-7 mb-0">

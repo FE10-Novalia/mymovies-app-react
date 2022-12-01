@@ -1,3 +1,4 @@
+import FavoriteButton from "./FavoriteBtn"
 
 const TrendingMovies = ({ trending, detailClick }) => {
         return (
@@ -16,9 +17,20 @@ const TrendingMovies = ({ trending, detailClick }) => {
                                 <p className="text-gray-300 dark:text-gray-100">{item.release_date}</p>
                                 <div className="card-actions justify-between">
                                 {/* <button className="btn btn-sm btn-outline btn-primary mt-5 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-800">Watch</button> */}
-                                <button className="btn btn-sm btn-outline btn-primary mt-5  dark:btn-outline dark:btn-info"
-                                    onClick={() => {detailClick(item.id)}}
-                                >Detail</button>
+                                
+                                <div className="dropdown dropdown-top">
+                                    <label tabIndex={0} className="btn m-1 bg-white dark:bg-gray-700 text-indigo-700">Click</label>
+                                    <ul tabIndex={0} className="dropdown-content menu p-1 shadow rounded w-full  bg-white dark:bg-gray-700">
+                                        <li><FavoriteButton movie_id={item}/></li>
+                                        <li><button className="btn btn-sm btn-outline btn-primary mt-5  dark:btn-outline dark:btn-info"
+                                    onClick={() => {detailClick(item.id)}}>Detail</button></li>
+                                    </ul>
+                                </div>
+                                {/* <div>
+                                    <FavoriteButton movie_id={item}/>
+                                    <button className="btn btn-sm btn-outline btn-primary mt-5  dark:btn-outline dark:btn-info"
+                                    onClick={() => {detailClick(item.id)}}>Detail</button>
+                                </div> */}
                                 </div>
                             </div>
                         </div>

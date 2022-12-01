@@ -9,7 +9,7 @@ const About = () => {
     <div className='bg-white dark:bg-gray-700 w-full h-[100vh] flex flex-col justify-between'>
        <Navbar
            home={() => navigate("/")}
-           project={() => navigate("/project")}
+           favorite={() => navigate("/favorite")}
            about={() => navigate("/about")}
            contact={() => navigate("/contact")}
         />

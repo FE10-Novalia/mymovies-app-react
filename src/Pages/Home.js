@@ -58,7 +58,7 @@ const Home = () => {
       <div className='w-[100vw] selection:bg-purple-400 selection:text-purple-900 bg-white dark:bg-gray-700'>
         <Navbar
            home={() => navigate("/")}
-           project={() => navigate("/project")}
+           favorite={() => navigate("/favorite")}
            about={() => navigate("/about")}
            contact={() => navigate("/contact")}
         />
